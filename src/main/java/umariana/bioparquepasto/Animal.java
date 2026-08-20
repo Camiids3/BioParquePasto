@@ -1,6 +1,6 @@
 package umariana.bioparquepasto;
 
-public class Animal {
+public abstract class Animal implements Cuidable{
 
     private int codigo;
     private String especie;
@@ -18,12 +18,13 @@ public class Animal {
 
     }
 
-    public Animal(int codigo, String especie, String nombre, int edad, String sexo, double peso, Habitat habitat, EstadoSalud estadoSalud, EstadoInventario estadoInventario, String tipoAnimal, String fechaRegistro) {
+    public Animal(int codigo, String especie, String nombre, int edad, String sexo, double peso, Habitat habitat, EstadoSalud estadoSalud, 
+            EstadoInventario estadoInventario, String tipoAnimal, String fechaRegistro) {
         if (edad < 0) {
             throw new IllegalArgumentException("La edad no puebe ser menor que 0.");
         }
         if (peso <= 0) {
-            throw new IllegalArgumentException("El peso debe ser mayor o igual que 0");
+            throw new IllegalArgumentException("El peso debe ser mayor  que 0");
         }
         if (codigo <= 0) {
             throw new IllegalArgumentException("El código debe ser mayor que 0");
@@ -109,9 +110,7 @@ public class Animal {
         return fechaRegistro;
     }
 
-    public void datosEspecificos() {
-
-    }
+    public abstract void datosEspecificos();
 
     public void actualizarEspecie(String nuevaEspecie) {
         if (nuevaEspecie == null || nuevaEspecie.isBlank()) {

@@ -25,6 +25,9 @@ public class Inventario {
         misHabitats.add(new Habitat(8, 30.9, "Humedal"));
         misHabitats.add(new Habitat(6, 5.9, "Montañas"));
         misHabitats.add(new Habitat(5, 22.9, "Enfermeria"));
+        //Animal animal = new Animal(1, "Leon", 5, "Macho", 120.0);
+        
+        
 
     }
 
@@ -286,7 +289,8 @@ public class Inventario {
             case 1:
                 try {
                     tipoAnimal = "Ave";
-                    Ave miAve = new Ave(contadorCodigo, especie, nombre, edad, sexo, peso, habitat, estadoSalud, estadoInventario, tipoAnimal, fechaRegistro, envergadura, puedeVolar);
+                    Ave miAve = new Ave(contadorCodigo, especie, nombre, edad, sexo, peso, habitat, estadoSalud, estadoInventario,
+                            tipoAnimal, fechaRegistro, envergadura, puedeVolar);
                     if (habitat.verificarCapacidad(miAve)) {
                         habitat.agregarAnimal(miAve);
                         misAnimales.add(miAve);
@@ -636,6 +640,165 @@ public class Inventario {
                 }
             }
             System.out.println("Animal con el codigo: " + codigoBusqueda + " no encontrado");
+
+        }
+
+    }
+
+    public void filtrarAnimal() {
+        int op;
+        if (misAnimales.isEmpty()) {
+            System.out.println("No hay animales registrados: ");
+            return;
+        } else {
+            try {
+                System.out.println("Filtrar animales por: \n1.Categoria\n2.Estado de salud\n3.Estado de inventario");
+                op = lector.nextInt();
+                lector.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Debe ingresar un número válido");
+                lector.nextLine();
+                return;
+
+            }
+            switch (op) {
+                case 1:
+                    try {
+                        System.out.println("Seleccionar categoría para filtrar: \n1.Ave\n2.Reptil\n3.Mamifero");
+                        int categoria = lector.nextInt();
+                        lector.nextLine();
+                        String tipo = "";
+                        switch (categoria) {
+                            case 1:
+                                tipo = "Ave";
+                                break;
+                            case 2:
+                                tipo = "Reptil";
+                                break;
+                            case 3:
+                                tipo = "Mamifero";
+                                break;
+                            default:
+                                System.out.println("Opción no válida");
+                                return;
+                        }
+                        for (Animal a : misAnimales) {
+                            if (a.getTipoAnimal().equalsIgnoreCase(tipo)) {
+                                System.out.println("=============================");
+                                System.out.println("Código: " + a.getCodigo());
+                                System.out.println("Especie: " + a.getEspecie());
+                                System.out.println("Nombre: " + a.getNombre());
+                                System.out.println("Edad: " + a.getEdad());
+                                System.out.println("Sexo: " + a.getSexo());
+                                System.out.println("Tipo: " + a.getTipoAnimal());
+                                a.datosEspecificos();
+                                System.out.println("Peso: " + a.getPeso());
+                                System.out.println("Habitat: " + a.getHabitat().getNombreHabitat());
+                                System.out.println("Estado de salud: " + a.getEstadoSalud());
+                                System.out.println("Estado de inventario: " + a.getEstadoInventario());
+                                System.out.println("Fecha de ingreso: " + a.getFechaRegistro());
+                                System.out.println("==========================================");
+
+                            }
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                    break;
+                case 2:
+                    try {
+                        System.out.println("Seleccionar estado de salud para filtrar: \n1.Sano\n2.Enfermo\n3.Fallecido");
+                        int estadoSalud = lector.nextInt();
+                        lector.nextLine();
+                        EstadoSalud estadoSeleccionado = null;
+                        switch (estadoSalud) {
+                            case 1:
+                                estadoSeleccionado = EstadoSalud.SANO;
+                                break;
+                            case 2:
+                                estadoSeleccionado = EstadoSalud.ENFERMO;
+                                break;
+                            case 3:
+                                estadoSeleccionado = EstadoSalud.FALLECIDO;
+                                break;
+                            default:
+                                System.out.println("Opcion no valida");
+                                return;
+
+                        }
+                        for (Animal a : misAnimales) {
+                            if (a.getEstadoSalud() == estadoSeleccionado) {
+                                System.out.println("==============================");
+                                System.out.println("Código: " + a.getCodigo());
+                                System.out.println("Especie: " + a.getEspecie());
+                                System.out.println("Nombre: " + a.getNombre());
+                                System.out.println("Edad: " + a.getEdad());
+                                System.out.println("Sexo: " + a.getSexo());
+                                System.out.println("Tipo: " + a.getTipoAnimal());
+                                a.datosEspecificos();
+                                System.out.println("Peso: " + a.getPeso());
+                                System.out.println("Habitat: " + a.getHabitat().getNombreHabitat());
+                                System.out.println("Estado de salud: " + a.getEstadoSalud());
+                                System.out.println("Estado de inventario: " + a.getEstadoInventario());
+                                System.out.println("Fecha de ingreso: " + a.getFechaRegistro());
+                                System.out.println("========================================");
+
+                            }
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+
+                    break;
+                case 3:
+                    try {
+                        System.out.println("Seleccionar el estado de inventario para filtrar: \n1.Activo\n2.En observacion\n3.Retirado");
+                        int estadoInventario = lector.nextInt();
+                        lector.nextLine();
+                        EstadoInventario estadoSeleccionado = null;
+                        switch (estadoInventario) {
+                            case 1:
+                                estadoSeleccionado = EstadoInventario.ACTIVO;
+                                break;
+                            case 2:
+                                estadoSeleccionado = EstadoInventario.EN_OBSERVACION;
+                                break;
+                            case 3:
+                                estadoSeleccionado = EstadoInventario.RETIRADO;
+                                break;
+                            default:
+                                System.out.println("Opcion no valida");
+                                break;
+                        }
+                        for (Animal a : misAnimales) {
+                            if (a.getEstadoInventario() == estadoSeleccionado) {
+                                System.out.println("==============================");
+                                System.out.println("Código: " + a.getCodigo());
+                                System.out.println("Especie: " + a.getEspecie());
+                                System.out.println("Nombre: " + a.getNombre());
+                                System.out.println("Edad: " + a.getEdad());
+                                System.out.println("Sexo: " + a.getSexo());
+                                System.out.println("Tipo: " + a.getTipoAnimal());
+                                a.datosEspecificos();
+                                System.out.println("Peso: " + a.getPeso());
+                                System.out.println("Habitat: " + a.getHabitat().getNombreHabitat());
+                                System.out.println("Estado de salud: " + a.getEstadoSalud());
+                                System.out.println("Estado de inventario: " + a.getEstadoInventario());
+                                System.out.println("Fecha de ingreso: " + a.getFechaRegistro());
+                                System.out.println("========================================");
+
+                            }
+                        }
+
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error" + e.getMessage());
+                    }
+                    break;
+                default:
+                    System.out.println("Opcion no valida");
+                    return;
+
+            }
 
         }
 

@@ -25,6 +25,12 @@ public class Mamifero extends Animal {
         System.out.println("Tipo de pelaje: "+ tipoPelaje);
         
     }
+        @Override
+    public void describirCuidados() {
+        System.out.println("Cuidados: Controlar peso, pelaje y estado en general");
+        
+
+    }
     
 
 }

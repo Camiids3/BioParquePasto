@@ -7,10 +7,10 @@ public class Reptil extends Animal {
     public Reptil() {
     }
 
-    public Reptil(int codigo, String especie,String nombre, int edad, String sexo, double peso, Habitat habitat, 
-            EstadoSalud estadoSalud, EstadoInventario estadoInventario,String tipoAnimal,String fechaRegistro,
+    public Reptil(int codigo, String especie, String nombre, int edad, String sexo, double peso, Habitat habitat,
+            EstadoSalud estadoSalud, EstadoInventario estadoInventario, String tipoAnimal, String fechaRegistro,
             String TipoEscamas) {
-        super(codigo, especie,nombre, edad, sexo, peso, habitat, estadoSalud, estadoInventario,tipoAnimal,fechaRegistro);
+        super(codigo, especie, nombre, edad, sexo, peso, habitat, estadoSalud, estadoInventario, tipoAnimal, fechaRegistro);
         this.TipoEscamas = TipoEscamas;
     }
 
@@ -28,9 +28,14 @@ public class Reptil extends Animal {
 
     @Override
     public void datosEspecificos() {
-        System.out.println("Tipo de escamas: "+ TipoEscamas );
-        
+        System.out.println("Tipo de escamas: " + TipoEscamas);
+
     }
-    
+
+    @Override
+    public void describirCuidados() {
+        System.out.println("Cuidados: controlar temperatura y condiciones del habitat.");
+
+    }
 
 }

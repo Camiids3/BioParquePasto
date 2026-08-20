@@ -43,7 +43,7 @@ public class BioparquePasto {
                     gestionarInventario.retirarAnimal();
                     break;
                 case 6:
-                    System.out.println("Opcion 6");
+                    gestionarInventario.filtrarAnimal();
                     break;
                 case 7:
                     System.out.println("Opcion 7");

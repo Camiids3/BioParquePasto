@@ -8,8 +8,8 @@ public class Ave extends Animal {
     public Ave() {
     }
 
-    public Ave(int codigo, String especie,String nombre, int edad, String sexo, double peso,  Habitat habitat, EstadoSalud estadoSalud, EstadoInventario estadoInventario,String tipoAnimal,String fechaRegistro,double envergadura, boolean puedeVolar) {
-        super(codigo, especie,nombre, edad, sexo, peso, habitat, estadoSalud, estadoInventario,tipoAnimal,fechaRegistro);
+    public Ave(int codigo, String especie, String nombre, int edad, String sexo, double peso, Habitat habitat, EstadoSalud estadoSalud, EstadoInventario estadoInventario, String tipoAnimal, String fechaRegistro, double envergadura, boolean puedeVolar) {
+        super(codigo, especie, nombre, edad, sexo, peso, habitat, estadoSalud, estadoInventario, tipoAnimal, fechaRegistro);
         this.envergadura = envergadura;
         this.puedeVolar = puedeVolar;
     }
@@ -23,9 +23,7 @@ public class Ave extends Animal {
         return envergadura;
     }
 
-    public void setEnvergadura(double envergadura) {
-        this.envergadura = envergadura;
-    }
+
 
     public boolean isPuedeVolar() {
         return puedeVolar;
@@ -37,16 +35,19 @@ public class Ave extends Animal {
 
     @Override
     public void datosEspecificos() {
-        System.out.println("Envergadura: "+ envergadura);
-        if(puedeVolar == true){
+        System.out.println("Envergadura: " + envergadura);
+        if (puedeVolar == true) {
             System.out.println("Puede volar: Sí");
-        }else{
+        } else {
             System.out.println("Puede volar: No");
         }
- 
-        
+
     }
-    
-    
+
+    @Override
+    public void describirCuidados() {
+        System.out.println("Cuidados: Revisar alas, plumas y condiciones de vuelo.");
+
+    }
 
 }

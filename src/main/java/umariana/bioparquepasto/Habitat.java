@@ -54,10 +54,22 @@ public class Habitat {
     }
 
     public void retirarAnimal(Animal animal) {
+        if (animal == null) {
+            throw new IllegalArgumentException("El animal no puede ser nulo");
+        }
+
         animales.remove(animal);
     }
 
     public void agregarAnimal(Animal animal) {
+        if (animal == null) {
+            throw new IllegalArgumentException("El animal no puede ser nulo");
+        }
+
+        if (animales.size() >= capacidadMax) {
+            throw new IllegalArgumentException("El habitat está lleno");
+        }
+
         animales.add(animal);
     }
 
